@@ -27,54 +27,66 @@ const Register = () => {
   }
 
   return (
-    <div className='register-container'>
-      <div className='register-card col-md-6 col-lg-4'>
-        <div className='register-header'>
-          <h1>Register</h1>
-        </div>
-        <form onSubmit={formSubmitHandler}>
-          <div className='form-group'>
-            <label htmlFor='name'>Name</label>
-            <input
-              value={name}
-              onChange={e => setName(e.target.value)}
-              type='text'
-              className='form-control'
-              id='name'
-              placeholder='Enter Name'
-            />
+    <div className='container'>
+      <div className='row justify-content-center'>
+        <div className='col-md-6 col-lg-4'>
+          <div className='card register-card'>
+            <div className='card-header register-header'>
+              <h1>Register</h1>
+            </div>
+            <div className='card-body'>
+              <form onSubmit={formSubmitHandler}>
+                <div className='mb-3'>
+                  <label htmlFor='name' className='form-label'>
+                    Name
+                  </label>
+                  <input
+                    value={name}
+                    onChange={e => setName(e.target.value)}
+                    type='text'
+                    className='form-control'
+                    id='name'
+                    placeholder='Enter Name'
+                  />
+                </div>
+                <div className='mb-3'>
+                  <label htmlFor='email' className='form-label'>
+                    Email address
+                  </label>
+                  <input
+                    value={email}
+                    onChange={e => setEmail(e.target.value)}
+                    type='email'
+                    className='form-control'
+                    id='email'
+                    placeholder='Enter email'
+                  />
+                </div>
+                <div className='mb-3'>
+                  <label htmlFor='password' className='form-label'>
+                    Password
+                  </label>
+                  <input
+                    value={password}
+                    onChange={e => setPassword(e.target.value)}
+                    type='password'
+                    className='form-control'
+                    id='password'
+                    placeholder='Password'
+                    autoComplete='current-password'
+                  />
+                </div>
+                <button type='submit' className='btn btn-info btn-block'>
+                  Register
+                </button>
+              </form>
+              {loading && <Loading />}
+              {error && <ErrorMessage error={error} />}
+              <div className='login-link mt-3 text-center'>
+                Already have an account? <Link to='/login'>Login here</Link>
+              </div>
+            </div>
           </div>
-          <div className='form-group'>
-            <label htmlFor='email'>Email address</label>
-            <input
-              value={email}
-              onChange={e => setEmail(e.target.value)}
-              type='email'
-              className='form-control'
-              id='email'
-              placeholder='Enter email'
-            />
-          </div>
-          <div className='form-group'>
-            <label htmlFor='password'>Password</label>
-            <input
-              value={password}
-              onChange={e => setPassword(e.target.value)}
-              type='password'
-              className='form-control'
-              id='password'
-              placeholder='Password'
-              autoComplete='current-password'
-            />
-          </div>
-          <button type='submit' className='btn btn-info btn-block'>
-            Register
-          </button>
-        </form>
-        {loading && <Loading />}
-        {error && <ErrorMessage error={error} />}
-        <div className='login-link'>
-          Already have an account? <Link to='/login'>Login here</Link>
         </div>
       </div>
     </div>

@@ -90,11 +90,6 @@ const Header = () => {
                     Login
                   </Link>
                 </li>
-                <li className='nav-item'>
-                  <Link className='nav-link' to='/register' onClick={closeNavbar}>
-                    Register
-                  </Link>
-                </li>
               </>
             )}
           </ul>
