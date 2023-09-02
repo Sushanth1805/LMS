@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { logoutUser } from '../../redux/actions/users/userActions';
 import './Header.css';
+import 'bootstrap-icons/font/bootstrap-icons.css';
+
 
 const Header = () => {
   const dispatch = useDispatch();
@@ -25,46 +27,46 @@ const Header = () => {
 
   return (
     <header>
-      <nav className='navbar navbar-expand-lg navbar-expand-md navbar-expand-sm navbar-dark bg-dark'>
+      <nav className='navbar navbar-expand-lg navbar-expand-md navbar-expand-sm navbar-dark bg-dark navbar-custom'>
         <Link className='navbar-brand' to='/' onClick={closeNavbar}>
-          Book store
+        <i class="bi bi-journals"></i> Book Library
         </Link>
         <button
-          className='navbar-toggler'
-          type='button'
-          onClick={() => setIsNavOpen(!isNavOpen)}>
-          <span className='navbar-toggler-icon'></span>
-        </button>
+  className='navbar-toggler'
+  type='button'
+  onClick={() => setIsNavOpen(!isNavOpen)}>
+  <i className="bi bi-card-list" style={{ fontSize: '25px' }}></i>
+</button>
 
-        <div className={`collapse navbar-collapse${isNavOpen ? ' show' : ''}`} id='navbarColor01'>
+
+        <div className={`collapse navbar-collapse show-custom${isNavOpen ? ' show' : ''}`} id='navbarColor01'>
           <ul className='navbar-nav ml-auto'>
             <li className='nav-item active'>
               <Link className='nav-link' to='/' onClick={closeNavbar}>
-                Home <span className='sr-only'>(current)</span>
+              <i class="bi bi-house"></i> Home <span className='sr-only'>(current)</span>
               </Link>
             </li>
             {userInfo ? (
               <>
                 <li className='nav-item'>
                   <Link className='nav-link' to='/books' onClick={closeNavbar}>
-                    Books
+                  <i class="bi bi-book"></i> Books
                   </Link>
                 </li>
                 <li className='nav-item'>
                   <Link className='nav-link' to='/users' onClick={closeNavbar}>
-                    Users
+                  <i class="bi bi-people"></i> Users
                   </Link>
                 </li>
                 <li className='nav-item dropdown'>
                   <Link
                     className='nav-link dropdown-toggle'
-                    to='/'
                     role='button'
                     data-toggle='dropdown'
                     aria-haspopup='true'
                     aria-expanded='false'
                     onClick={closeNavbar}>
-                    {userInfo.name}
+                    <i class="bi bi-person-circle"></i> {userInfo.name}
                   </Link>
                   <div className='dropdown-menu'>
                     <Link className='dropdown-item' to='/profile' onClick={closeNavbar}>
@@ -78,7 +80,7 @@ const Header = () => {
                     </Link>
                     <div className='dropdown-divider'></div>
                     <button onClick={logoutHandler} className='dropdown-item text-danger'>
-                      Logout
+                    <i class="bi bi-box-arrow-in-left"></i> Logout
                     </button>
                   </div>
                 </li>
@@ -87,7 +89,7 @@ const Header = () => {
               <>
                 <li className='nav-item'>
                   <Link className='nav-link' to='/login' onClick={closeNavbar}>
-                    Login
+                  Login <i class="bi bi-box-arrow-in-right"></i> 
                   </Link>
                 </li>
               </>

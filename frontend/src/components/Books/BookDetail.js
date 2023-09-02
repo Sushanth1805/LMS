@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchBook, updateBook } from '../../redux/actions/books/bookActions';
 
@@ -29,7 +29,7 @@ const BookDetail = () => {
     dispatch(fetchBook(id));
   }, [dispatch, id]);
 
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   const formSubmitHandler = e => {
     e.preventDefault();
@@ -40,8 +40,9 @@ const BookDetail = () => {
       bookImage, // Add bookImage to the data object
     };
     dispatch(updateBook(id, data));
-    navigate('/books');
+    // navigate('/books');
     window.location.reload();
+    window.history.back();  
   };
 
   return (

@@ -1,12 +1,7 @@
+/* Improved styling for panel */
 .panel-shadow {
   box-shadow: rgba(0, 0, 0, 0.2) 0px 5px 10px;
-}
-
-.panel-white {
   border: 1px solid #f1f1f1;
-}
-
-.panel {
   font-size: 14px;
   color: #333333;
   background: #ffffff;
@@ -15,17 +10,18 @@
   font-family: 'Roboto', sans-serif;
 }
 
-.panel-white .panel-heading {
+.panel-heading {
   color: #333;
   background-color: #f9f9f9;
   border-color: #f1f1f1;
 }
 
-.panel-white .panel-footer {
+.panel-footer {
   background-color: #f9f9f9;
   border-color: #f1f1f1;
 }
 
+/* Improved styling for background image */
 .bg2 {
   background-image: url('https://via.placeholder.com/560x344/FF4500/000000');
   background-size: cover;
@@ -33,13 +29,14 @@
   height: 300px;
 }
 
+/* Improved styling for profile widget */
 .profile-widget {
   position: relative;
 }
 
 .profile-widget .image-container {
   position: relative;
-  padding: 80px 0 20px; /* Adjusted padding to make the image smaller */
+  padding: 60px 0 20px; /* Adjusted padding */
   text-align: center;
 }
 
@@ -53,7 +50,7 @@
   width: 120px; /* Made the profile image smaller */
   height: 120px; /* Made the profile image smaller */
   border-radius: 50%;
-  margin: 0 auto -60px;
+  margin: 0 auto -40px;
   display: block;
   border: 4px solid #ffffff;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
@@ -65,7 +62,7 @@
 }
 
 .profile-widget .details {
-  padding: 40px 15px;
+  padding: 20px 15px;
   text-align: center;
 }
 

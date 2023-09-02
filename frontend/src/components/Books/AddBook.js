@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { createBook } from '../../redux/actions/books/bookActions';
-import { useNavigate } from 'react-router-dom';
+// import { useNavigate } from 'react-router-dom';
 import '../CSS/style.css';
 
 const AddBook = () => {
@@ -15,7 +15,7 @@ const AddBook = () => {
   const { userInfo } = userLogin;
 
   const dispatch = useDispatch();
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   const formSubmitHandler = e => {
     e.preventDefault();
@@ -28,8 +28,9 @@ const AddBook = () => {
       createdBy: userInfo && userInfo._id,
     };
     dispatch(createBook(data));
-    navigate('/books');
+    // navigate('/books');
     window.location.reload();
+    window.history.back();
     
   };
 

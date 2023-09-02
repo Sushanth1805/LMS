@@ -12,7 +12,7 @@ const Home = () => {
   </video>
   <div className='Content'>
     <div className='SubContent'>
-    <h1 style={{ fontWeight: 'bold', fontSize: '4rem', color: 'white' }}>Book Collection</h1>
+    <h1 style={{ fontWeight: 'bold', fontSize: '4rem', color: 'white' }}>Book Library</h1>
       <p style={{ fontWeight: 'bold', fontSize: '2rem', color: 'white' }}>Manage your Books</p>
 
       <button type='button' className='btn btn-outline-dark'>

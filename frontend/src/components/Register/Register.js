@@ -23,7 +23,7 @@ const Register = () => {
   };
 
   if (userInfo) {
-    navigate('/');
+    navigate('/books');
   }
 
   return (

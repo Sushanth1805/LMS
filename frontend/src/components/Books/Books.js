@@ -3,8 +3,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import { fetchBooks, deleteBook } from '../../redux/actions/books/bookActions';
 import Loading from '../Loading/Loading';
 import BookDetailsModal from './BookDetailsModal'; // Adjust the path accordingly
-import { Link} from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import '../../App.css';
+import 'bootstrap-icons/font/bootstrap-icons.css';
 
 const Books = () => {
   const [searchTerm, setSearchTerm] = useState('');
@@ -19,19 +20,32 @@ const Books = () => {
   const booksList = useSelector(state => state.booksList);
   const { books, loading } = booksList;
 
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
 
-  const handleDeleteBook = id => {
-    dispatch(deleteBook(id));
-    window.location.reload();
-    window.location.reload();
-    window.location.reload();
-
+  const handleDeleteBook = async id => {
+    try {
+      await dispatch(deleteBook(id));
+      navigate('/books');
+    } catch (error) {
+      console.error('Error deleting book:', error);
+    }
   };
 
   const handleSearch = e => {
     setSearchTerm(e.target.value);
   };
+
+  // Add a check for the existence of books
+  const filteredBooks = books && books.filter(book => {
+    const searchTermLowerCase = searchTerm.toLowerCase();
+    const titleMatches = book.title && book.title.toLowerCase().includes(searchTermLowerCase);
+    const authorMatches = book.author && book.author.toLowerCase().includes(searchTermLowerCase);
+    const genreMatches = book.category && book.category.toLowerCase().includes(searchTermLowerCase);
+    const publishDateMatches = book.published && book.published.includes(searchTermLowerCase); // Assuming publishDate is a string
+
+    // Return true if any of the fields match the search term
+    return titleMatches || authorMatches || genreMatches || publishDateMatches;
+  });
 
   const handleBookClick = book => {
     setSelectedBook(book);
@@ -53,12 +67,12 @@ const Books = () => {
         <div className='col-lg-10 offset-lg-1'>
           <div className='mb-3 d-flex align-items-center justify-content-between'>
             <Link to='/addbook' className='btn btn-success'>
-              Add
+              <i className="bi bi-plus-lg"></i>
             </Link>
             <input
               type='text'
               className='form-control form-control-sm flex-grow-1 ml-2'
-              placeholder='Search by book name...'
+              placeholder='Search by book name, author, genre, or publish date...'
               value={searchTerm}
               onChange={handleSearch}
             />
@@ -74,34 +88,32 @@ const Books = () => {
                 </tr>
               </thead>
               <tbody>
-                {books &&
-                  books
-                    .filter(book => book.title.toLowerCase().includes(searchTerm.toLowerCase()))
-                    .map(book => (
-                      <tr className='table-light' key={book._id}>
-                        <td>
-                          <img src={book.bookImage} alt='Book Cover' style={{ width: '100px' }} />
-                        </td>
-                        <td>
-                          <button className='btn btn-link' onClick={() => handleBookClick(book)}>
-                            {book.title}
+                {filteredBooks &&
+                  filteredBooks.map(book => (
+                    <tr className='table-light' key={book._id}>
+                      <td>
+                        <img src={book.bookImage} alt='Book Cover' style={{ width: '100px' }} />
+                      </td>
+                      <td>
+                        <button className='btn btn-link' onClick={() => handleBookClick(book)}>
+                          {book.title}
+                        </button>
+                      </td>
+                      <td>{book.author}</td>
+                      <td>
+                        <div className='d-flex'>
+                          <Link to={`/book/${book._id}`} className='btn btn-warning mr-2'>
+                            <i className="bi bi-pencil-square"></i> Edit
+                          </Link>
+                          <button
+                            onClick={() => handleDeleteBook(book._id)}
+                            className='btn btn-danger'>
+                            <i className="bi bi-trash3"></i> Delete
                           </button>
-                        </td>
-                        <td>{book.author}</td>
-                        <td>
-                          <div className='d-flex'>
-                            <Link to={`/book/${book._id}`} className='btn btn-warning mr-2'>
-                              Edit
-                            </Link>
-                            <button
-                              onClick={() => handleDeleteBook(book._id)}
-                              className='btn btn-danger'>
-                              Delete
-                            </button>
-                          </div>
-                        </td>
-                      </tr>
-                    ))}
+                        </div>
+                      </td>
+                    </tr>
+                  ))}
               </tbody>
             </table>
           </div>
