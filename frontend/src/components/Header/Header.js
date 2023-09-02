@@ -53,11 +53,6 @@ const Header = () => {
                   <i class="bi bi-book"></i> Books
                   </Link>
                 </li>
-                <li className='nav-item'>
-                  <Link className='nav-link' to='/users' onClick={closeNavbar}>
-                  <i class="bi bi-people"></i> Users
-                  </Link>
-                </li>
                 <li className='nav-item dropdown'>
                   <Link
                     className='nav-link dropdown-toggle'

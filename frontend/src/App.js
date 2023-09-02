@@ -9,7 +9,6 @@ import Books from './components/Books/Books';
 import AddBook from './components/Books/AddBook';
 import UpdateProfile from './components/UpdateProfile/UpdateProfile';
 import BookDetail from './components/Books/BookDetail';
-import Users from './components/Users/Users';
 import Book from './components/Books/BookDetailsModal';
 // import DeletedPage from './components/Books/DeletedPage';
 // import UpdatedPage from './components/Books/UpdatedPage';
@@ -28,7 +27,6 @@ const App = () => {
           <Route path='/addbook' element={<AddBook />} />
           <Route path='/user-update' element={<UpdateProfile />} />
           <Route path='/book/:id' element={<BookDetail />} />
-          <Route path='/users' element={<Users />} />
           {/* <Route path='/deletedpage' element={<DeletedPage />} />
           <Route path='/updatedpage' element={<UpdatedPage />} /> */}
         </Routes>
